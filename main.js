@@ -1,6 +1,7 @@
 var coffeeShop = {
     beans: 40,
     money: 100,
+    beansPrice: 5,
 
 
     drinkRequirements: {
@@ -19,12 +20,29 @@ var coffeeShop = {
         }
 
         //If the drink is part of the drinkRequirements object, reduce the amount of beans by the number of beans required for that drink.
-        var drinkRequirement = this.drinkRequirements[drinkType];
+        let drinkRequirement = this.drinkRequirements[drinkType];
         if (drinkRequirement <= this.beans) {
             this.beans -= drinkRequirement;
         } else {
             // If there are not enough beans to make that drink, alert: "Sorry, we're all out of beans!".
             alert("Sorry, we're all out of beans!");
+        }
+
+    },
+
+    /**
+     * buySupplies method. It should reduce the amount of money depending on how many beans are purchased.
+     */
+    buySupplies: function (howMuchBeans) {
+        let beansCost = howMuchBeans * this.beansPrice;
+        if (beansCost<=this.money) {
+            this.money -= beansCost;
+            this.beans += howMuchBeans;
+            console.log("Purchase beans");
+            return true;
+        } else {
+            console.log("not enough money to purchase that many beans");
+            return false;
         }
 
     }
